@@ -18,7 +18,7 @@ namespace Core
         private int Cont = 0;
         public void SalvarLista(List<MapSummary> summarie, List<MapSummaryN> summarieN)
         {
-            using (SqlConnection connection = new SqlConnection("Server = localhost; Database = api; User Id = sa;Password = sqlserver;"))
+            using (SqlConnection connection = new SqlConnection("Server=DESKTOP-SISBMK5;Database=myDataBase;Trusted_Connection=True;"))
             {
                 connection.Open();
                 int i = 0;
