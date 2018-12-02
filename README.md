@@ -38,3 +38,15 @@ São esses os parâmetros que a interface irá aceitar:
 -   Criação de interfaces para consumir o Core com foco no back-end
 -   Visual mais amigável e otimização
 -   Correção dos Bugs
+
+
+### Mudanças e features novas.
+
+- Nova api: https://coinmarketcap.com/pt-br/api/
+- MVC ficará em segundo plano. O foco do projeto será apenas em WinForm.
+- Uma nova Model, que vai carregar 3 apis em uma.
+- Nova coluna no BD servindo como token com expiracao de 20 minutos para realizar nova consulta a web, para menos consulta web e maior desempenho/velocidade nas consultas de listas.
+- Funçoes do form:
+    - Acessar api e salvar no banco de dados
+    - Acessar banco de dados e obter lista
+    - ..[em desenvolvimento ]..
