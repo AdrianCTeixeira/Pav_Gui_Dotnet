@@ -20,31 +20,41 @@ namespace Core
         {
             Console.WriteLine("------------" + DateTime.Now.ToString("h:mm:ss tt") + "------------");
             int i = 0;
-            var list = summarie;
-            var list2 = summarieN;
-            int threadNumbers = 10;
-            int eachThread = summarie.Count / threadNumbers;
-            Thread thread1 = new Thread(() => SaveDB(summarie, i, eachThread * 0, eachThread * 1));
-            Thread thread2 = new Thread(() => SaveDB(summarie, i, eachThread * 1, eachThread * 2));
-            Thread thread3 = new Thread(() => SaveDB(summarie, i, eachThread * 2, eachThread * 3));
-            Thread thread4 = new Thread(() => SaveDB(summarie, i, eachThread * 3, eachThread * 4));
-            Thread thread5 = new Thread(() => SaveDB(summarie, i, eachThread * 4, eachThread * 5));
-            Thread thread6 = new Thread(() => SaveDB(summarie, i, eachThread * 5, eachThread * 6));
-            Thread thread7 = new Thread(() => SaveDB(summarie, i, eachThread * 6, eachThread * 7));
-            Thread thread8 = new Thread(() => SaveDB(summarie, i, eachThread * 7, eachThread * 8));
-            Thread thread9 = new Thread(() => SaveDB(summarie, i, eachThread * 8, eachThread * 9));
-            Thread thread10 = new Thread(() => SaveDB(summarie, i, eachThread * 9, summarie.Count));
+            try
+            {
+                var list = summarie;
+                var list2 = summarieN;
+                int threadNumbers = 10;
+                int eachThread = summarie.Count / threadNumbers;
 
-            thread1.Start();
-            thread2.Start();
-            thread3.Start();
-            thread4.Start();
-            thread5.Start();
-            thread6.Start();
-            thread7.Start();
-            thread8.Start();
-            thread9.Start();
-            thread10.Start();
+                DeleteInfo();
+
+                Thread thread1 = new Thread(() => SaveDB(summarie, i, eachThread * 0, eachThread * 1));
+                Thread thread2 = new Thread(() => SaveDB(summarie, i, eachThread * 1, eachThread * 2));
+                Thread thread3 = new Thread(() => SaveDB(summarie, i, eachThread * 2, eachThread * 3));
+                Thread thread4 = new Thread(() => SaveDB(summarie, i, eachThread * 3, eachThread * 4));
+                Thread thread5 = new Thread(() => SaveDB(summarie, i, eachThread * 4, eachThread * 5));
+                Thread thread6 = new Thread(() => SaveDB(summarie, i, eachThread * 5, eachThread * 6));
+                Thread thread7 = new Thread(() => SaveDB(summarie, i, eachThread * 6, eachThread * 7));
+                Thread thread8 = new Thread(() => SaveDB(summarie, i, eachThread * 7, eachThread * 8));
+                Thread thread9 = new Thread(() => SaveDB(summarie, i, eachThread * 8, eachThread * 9));
+                Thread thread10 = new Thread(() => SaveDB(summarie, i, eachThread * 9, summarie.Count));
+
+                thread1.Start();
+                thread2.Start();
+                thread3.Start();
+                thread4.Start();
+                thread5.Start();
+                thread6.Start();
+                thread7.Start();
+                thread8.Start();
+                thread9.Start();
+                thread10.Start();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
         public List<Row> GetList()
         {
@@ -72,7 +82,7 @@ namespace Core
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
-                        {   
+                        {
                             Row row = new Row();
                             row.MarketCurrency = reader.GetString(0).ToString();
                             row.BaseCurrency = reader.GetString(1).ToString();
@@ -94,6 +104,22 @@ namespace Core
             }
 
         }
+        private static void DeleteInfo()
+        {
+            string deleteRegister = "DELETE FROM MapSummary";
+            using (SqlConnection conn = new SqlConnection("Server=DESKTOP-SISBMK5;Database=api;Integrated Security=true"))
+            {
+                conn.Open();
+                using (SqlCommand queryDeleteRegister = new SqlCommand(deleteRegister))
+                {
+                    queryDeleteRegister.Connection = conn;
+                    queryDeleteRegister.CommandType = CommandType.Text;
+                    queryDeleteRegister.CommandText = deleteRegister;
+                    queryDeleteRegister.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
+        }
         private static int SaveDB(List<MapSummary> summarie, int i, int iniciarEm, int pararEm)
         {
             using (SqlConnection conn = new SqlConnection("Server=DESKTOP-SISBMK5;Database=api;Integrated Security=true"))
@@ -111,7 +137,6 @@ namespace Core
                     {
                         data = webClient.DownloadData(objeto.LogoUrl);
                     }
-
                     string saveStaff = "INSERT into MapSummary VALUES ("
                         + "'" + objeto.MarketCurrency + "'" + ","
                         + "'" + objeto.BaseCurrency + "'" + ","
@@ -139,7 +164,9 @@ namespace Core
                     i++;
                 }
                 Console.WriteLine("------------" + DateTime.Now.ToString("h:mm:ss tt") + "------------");
+                conn.Close();
                 return i;
+
             }
 
         }
