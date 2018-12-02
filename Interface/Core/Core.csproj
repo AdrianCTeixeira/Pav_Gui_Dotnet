@@ -51,6 +51,7 @@
     <Compile Include="Model\JsonMapSummaryN.cs" />
     <Compile Include="Model\MapSummary.cs" />
     <Compile Include="Model\MapSummaryN.cs" />
+    <Compile Include="Model\Row.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Core;
+using Core.Model;
 
 namespace ApplicationFORM
 {
@@ -27,9 +28,24 @@ namespace ApplicationFORM
             Database database = new Database();
             database.SalvarLista(api.GetInfo(), api.GetMarket());
         }
-        public void aumentarCont(int valor)
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //label1.Text = valor.ToString();
+            //if (comboBox1.SelectedItem == null) return;
+            //var b = (Row)comboBox1.SelectedItem;
+            //if (b != null)
+            //    Console.WriteLine(b.MarketCurrencyLong);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Database database = new Database();
+            Row item = new Row();
+            var Lista = database.GetList();
+            foreach (Row objeto in Lista)
+            {
+                comboBox1.Items.Add(objeto.MarketCurrencyLong + " ---- " + objeto.BaseCurrency);
+            }            
         }
     }
 }

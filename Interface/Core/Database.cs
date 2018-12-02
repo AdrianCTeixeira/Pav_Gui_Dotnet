@@ -16,36 +16,85 @@ namespace Core
 {
     public class Database
     {
-        private int Cont = 0;
         public void SalvarLista(List<MapSummary> summarie, List<MapSummaryN> summarieN)
         {
-
+            Console.WriteLine("------------" + DateTime.Now.ToString("h:mm:ss tt") + "------------");
             int i = 0;
             var list = summarie;
             var list2 = summarieN;
-            int threadNumbers = 4;
-            int eachThread = summarie.Count / (threadNumbers);
-            Thread thread = new Thread(() => NewMethod(summarie, i, 0, (eachThread * 1)));
-            Thread thread2 = new Thread(() => NewMethod(summarie, i, eachThread * 1, eachThread * 2));
-            Thread thread3 = new Thread(() => NewMethod(summarie, i, eachThread * 2, eachThread * 3));
-            Thread thread4 = new Thread(() => NewMethod(summarie, i, eachThread * 3, eachThread * 4));
+            int threadNumbers = 10;
+            int eachThread = summarie.Count / threadNumbers;
+            Thread thread1 = new Thread(() => SaveDB(summarie, i, eachThread * 0, eachThread * 1));
+            Thread thread2 = new Thread(() => SaveDB(summarie, i, eachThread * 1, eachThread * 2));
+            Thread thread3 = new Thread(() => SaveDB(summarie, i, eachThread * 2, eachThread * 3));
+            Thread thread4 = new Thread(() => SaveDB(summarie, i, eachThread * 3, eachThread * 4));
+            Thread thread5 = new Thread(() => SaveDB(summarie, i, eachThread * 4, eachThread * 5));
+            Thread thread6 = new Thread(() => SaveDB(summarie, i, eachThread * 5, eachThread * 6));
+            Thread thread7 = new Thread(() => SaveDB(summarie, i, eachThread * 6, eachThread * 7));
+            Thread thread8 = new Thread(() => SaveDB(summarie, i, eachThread * 7, eachThread * 8));
+            Thread thread9 = new Thread(() => SaveDB(summarie, i, eachThread * 8, eachThread * 9));
+            Thread thread10 = new Thread(() => SaveDB(summarie, i, eachThread * 9, summarie.Count));
 
-            thread.Start();
+            thread1.Start();
             thread2.Start();
             thread3.Start();
             thread4.Start();
+            thread5.Start();
+            thread6.Start();
+            thread7.Start();
+            thread8.Start();
+            thread9.Start();
+            thread10.Start();
+        }
+        public List<Row> GetList()
+        {
+            List<Row> listObjects = new List<Row>();
 
-            //foreach (Object ob in list)
-            //{
-            //    var item = list2.FirstOrDefault(o => o.MarketName == list[i].MarketName);
-            //    metroGrid1.Rows.Add(list[i].MarketCurrency, list[i].BaseCurrency, list[i].MarketCurrencyLong, list[i].BaseCurrencyLong,
-            //list[i].MinTradeSize, list[i].MarketName, item.Ask, list[i].IsActive, list[i].IsRestricted, list[i].Created, list[i].Notice, list[i].IsSponsored, list[i].LogoUrl);
-            //    i++;
-            //}
+            using (SqlConnection connection = new SqlConnection("Server=DESKTOP-SISBMK5;Database=api;Integrated Security=true"))
+            {
+                connection.Open();
+                string query = "SELECT [MarketCurrency] ," +
+                    "[BaseCurrency] ," +
+                    "[MarketCurrencyLong] ," +
+                    "[BaseCurrencyLong] ," +
+                    "[MinTradeSize] ," +
+                    "[MarketName] ," +
+                    "[IsActive] ," +
+                    "[IsRestricted] ," +
+                    "[Created] ," +
+                    "[Notice] ," +
+                    "[IsSponsored]," +
+                    "CAST('<![CDATA[' + CAST(LogoImage as nvarchar(max)) + ']]>' AS xml) " +
+                    "FROM [api].[dbo].[MapSummary] " +
+                    "ORDER BY MarketCurrencyLong ";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {   
+                            Row row = new Row();
+                            row.MarketCurrency = reader.GetString(0).ToString();
+                            row.BaseCurrency = reader.GetString(1).ToString();
+                            row.MarketCurrencyLong = reader.GetString(2).ToString();
+                            row.BaseCurrencyLong = reader.GetString(3).ToString();
+                            row.MinTradeSize = reader.GetDecimal(4);
+                            row.MarketName = reader.GetString(5).ToString();
+                            row.IsActive = reader.GetBoolean(6);
+                            row.IsRestricted = reader.GetBoolean(7);
+                            row.Created = reader.GetDateTime(8);
+                            row.Notice = reader.GetString(9).ToString();
+                            row.IsSponsored = reader.GetBoolean(10);
+                            row.LogoImage = reader.GetString(11).ToString();
+                            listObjects.Add(row);
+                        }
+                    }
+                }
+                return listObjects;
+            }
 
         }
-
-        private static int NewMethod(List<MapSummary> summarie, int i, int iniciarEm, int pararEm)
+        private static int SaveDB(List<MapSummary> summarie, int i, int iniciarEm, int pararEm)
         {
             using (SqlConnection conn = new SqlConnection("Server=DESKTOP-SISBMK5;Database=api;Integrated Security=true"))
             {
@@ -85,17 +134,15 @@ namespace Core
                         querySaveStaff.ExecuteNonQuery();
                     }
                     int contPositionList = iniciarEm;
-                    Console.WriteLine(contPositionList);
+                    Console.WriteLine(contPositionList + "  " + pararEm);
                     contPositionList++;
                     i++;
                 }
+                Console.WriteLine("------------" + DateTime.Now.ToString("h:mm:ss tt") + "------------");
                 return i;
             }
-        }
 
-        public int getCont()
-        {
-            return Cont;
         }
     }
 }
+
