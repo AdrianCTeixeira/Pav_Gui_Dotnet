@@ -564,16 +564,16 @@ th {
 .glyphicon-ban-circle:before {
   content: "\e090";
 }
-.glyphicon-arrow-left:before {
+.glyphicon-arCoin-left:before {
   content: "\e091";
 }
-.glyphicon-arrow-right:before {
+.glyphicon-arCoin-right:before {
   content: "\e092";
 }
-.glyphicon-arrow-up:before {
+.glyphicon-arCoin-up:before {
   content: "\e093";
 }
-.glyphicon-arrow-down:before {
+.glyphicon-arCoin-down:before {
   content: "\e094";
 }
 .glyphicon-share-alt:before {
@@ -675,16 +675,16 @@ th {
 .glyphicon-hand-down:before {
   content: "\e130";
 }
-.glyphicon-circle-arrow-right:before {
+.glyphicon-circle-arCoin-right:before {
   content: "\e131";
 }
-.glyphicon-circle-arrow-left:before {
+.glyphicon-circle-arCoin-left:before {
   content: "\e132";
 }
-.glyphicon-circle-arrow-up:before {
+.glyphicon-circle-arCoin-up:before {
   content: "\e133";
 }
-.glyphicon-circle-arrow-down:before {
+.glyphicon-circle-arCoin-down:before {
   content: "\e134";
 }
 .glyphicon-globe:before {
@@ -1608,7 +1608,7 @@ pre code {
   margin-right: auto;
   margin-left: auto;
 }
-.row {
+.Coin {
   margin-right: -15px;
   margin-left: -15px;
 }
@@ -3480,10 +3480,10 @@ input[type="button"].btn-block {
   display: block;
 }
 tr.collapse.in {
-  display: table-row;
+  display: table-Coin;
 }
 tbody.collapse.in {
-  display: table-row-group;
+  display: table-Coin-group;
 }
 .collapsing {
   position: relative;
@@ -6038,63 +6038,63 @@ button.close {
   background-color: #000;
   border-radius: 4px;
 }
-.tooltip-arrow {
+.tooltip-arCoin {
   position: absolute;
   width: 0;
   height: 0;
   border-color: transparent;
   border-style: solid;
 }
-.tooltip.top .tooltip-arrow {
+.tooltip.top .tooltip-arCoin {
   bottom: 0;
   left: 50%;
   margin-left: -5px;
   border-width: 5px 5px 0;
   border-top-color: #000;
 }
-.tooltip.top-left .tooltip-arrow {
+.tooltip.top-left .tooltip-arCoin {
   right: 5px;
   bottom: 0;
   margin-bottom: -5px;
   border-width: 5px 5px 0;
   border-top-color: #000;
 }
-.tooltip.top-right .tooltip-arrow {
+.tooltip.top-right .tooltip-arCoin {
   bottom: 0;
   left: 5px;
   margin-bottom: -5px;
   border-width: 5px 5px 0;
   border-top-color: #000;
 }
-.tooltip.right .tooltip-arrow {
+.tooltip.right .tooltip-arCoin {
   top: 50%;
   left: 0;
   margin-top: -5px;
   border-width: 5px 5px 5px 0;
   border-right-color: #000;
 }
-.tooltip.left .tooltip-arrow {
+.tooltip.left .tooltip-arCoin {
   top: 50%;
   right: 0;
   margin-top: -5px;
   border-width: 5px 0 5px 5px;
   border-left-color: #000;
 }
-.tooltip.bottom .tooltip-arrow {
+.tooltip.bottom .tooltip-arCoin {
   top: 0;
   left: 50%;
   margin-left: -5px;
   border-width: 0 5px 5px;
   border-bottom-color: #000;
 }
-.tooltip.bottom-left .tooltip-arrow {
+.tooltip.bottom-left .tooltip-arCoin {
   top: 0;
   right: 5px;
   margin-top: -5px;
   border-width: 0 5px 5px;
   border-bottom-color: #000;
 }
-.tooltip.bottom-right .tooltip-arrow {
+.tooltip.bottom-right .tooltip-arCoin {
   top: 0;
   left: 5px;
   margin-top: -5px;
@@ -6158,8 +6158,8 @@ button.close {
 .popover-content {
   padding: 9px 14px;
 }
-.popover > .arrow,
-.popover > .arrow:after {
+.popover > .arCoin,
+.popover > .arCoin:after {
   position: absolute;
   display: block;
   width: 0;
@@ -6167,14 +6167,14 @@ button.close {
   border-color: transparent;
   border-style: solid;
 }
-.popover > .arrow {
+.popover > .arCoin {
   border-width: 11px;
 }
-.popover > .arrow:after {
+.popover > .arCoin:after {
   content: "";
   border-width: 10px;
 }
-.popover.top > .arrow {
+.popover.top > .arCoin {
   bottom: -11px;
   left: 50%;
   margin-left: -11px;
@@ -6182,14 +6182,14 @@ button.close {
   border-top-color: rgba(0, 0, 0, .25);
   border-bottom-width: 0;
 }
-.popover.top > .arrow:after {
+.popover.top > .arCoin:after {
   bottom: 1px;
   margin-left: -10px;
   content: " ";
   border-top-color: #fff;
   border-bottom-width: 0;
 }
-.popover.right > .arrow {
+.popover.right > .arCoin {
   top: 50%;
   left: -11px;
   margin-top: -11px;
@@ -6197,14 +6197,14 @@ button.close {
   border-right-color: rgba(0, 0, 0, .25);
   border-left-width: 0;
 }
-.popover.right > .arrow:after {
+.popover.right > .arCoin:after {
   bottom: -10px;
   left: 1px;
   content: " ";
   border-right-color: #fff;
   border-left-width: 0;
 }
-.popover.bottom > .arrow {
+.popover.bottom > .arCoin {
   top: -11px;
   left: 50%;
   margin-left: -11px;
@@ -6212,14 +6212,14 @@ button.close {
   border-bottom-color: #999;
   border-bottom-color: rgba(0, 0, 0, .25);
 }
-.popover.bottom > .arrow:after {
+.popover.bottom > .arCoin:after {
   top: 1px;
   margin-left: -10px;
   content: " ";
   border-top-width: 0;
   border-bottom-color: #fff;
 }
-.popover.left > .arrow {
+.popover.left > .arCoin {
   top: 50%;
   right: -11px;
   margin-top: -11px;
@@ -6227,7 +6227,7 @@ button.close {
   border-left-color: #999;
   border-left-color: rgba(0, 0, 0, .25);
 }
-.popover.left > .arrow:after {
+.popover.left > .arCoin:after {
   right: 1px;
   bottom: -10px;
   content: " ";
@@ -6466,8 +6466,8 @@ button.close {
 .container:after,
 .container-fluid:before,
 .container-fluid:after,
-.row:before,
-.row:after,
+.Coin:before,
+.Coin:after,
 .form-horizontal .form-group:before,
 .form-horizontal .form-group:after,
 .btn-toolbar:before,
@@ -6497,7 +6497,7 @@ button.close {
 .dl-horizontal dd:after,
 .container:after,
 .container-fluid:after,
-.row:after,
+.Coin:after,
 .form-horizontal .form-group:after,
 .btn-toolbar:after,
 .btn-group-vertical > .btn-group:after,
@@ -6575,7 +6575,7 @@ button.close {
     display: table !important;
   }
   tr.visible-xs {
-    display: table-row !important;
+    display: table-Coin !important;
   }
   th.visible-xs,
   td.visible-xs {
@@ -6605,7 +6605,7 @@ button.close {
     display: table !important;
   }
   tr.visible-sm {
-    display: table-row !important;
+    display: table-Coin !important;
   }
   th.visible-sm,
   td.visible-sm {
@@ -6635,7 +6635,7 @@ button.close {
     display: table !important;
   }
   tr.visible-md {
-    display: table-row !important;
+    display: table-Coin !important;
   }
   th.visible-md,
   td.visible-md {
@@ -6665,7 +6665,7 @@ button.close {
     display: table !important;
   }
   tr.visible-lg {
-    display: table-row !important;
+    display: table-Coin !important;
   }
   th.visible-lg,
   td.visible-lg {
@@ -6718,7 +6718,7 @@ button.close {
     display: table !important;
   }
   tr.visible-print {
-    display: table-row !important;
+    display: table-Coin !important;
   }
   th.visible-print,
   td.visible-print {

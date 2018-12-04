@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Core;
@@ -18,17 +19,43 @@ namespace ApplicationFORM
 {
     public partial class Form1 : Form
     {
-        public List<Row> Lista = new List<Row>();
+        public List<Coin> Lista = new List<Coin>();
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private bool DisableLoading(List<Thread> listThreads)
+        {
+
+            foreach (var t in listThreads)
+            {
+                if (t.IsAlive)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Api api = new Api();
             Database database = new Database();
-            database.SalvarLista(api.GetInfo(), api.GetMarket());
+            Console.WriteLine("db deletado");
+            database.DeleteBD();
+            List<Thread> listThread = database.SalvarLista(api.GetInfo(), api.GetMarket());
+            while (!DisableLoading(listThread))
+            {
+                Thread.Sleep(1000);
+                Console.WriteLine("Carregando. " + listThread.Count + " / 10");
+            }
+
+            Console.WriteLine("Finalizado");
+
         }
         private Image Base64ToImage(string base64)
         {
@@ -42,9 +69,21 @@ namespace ApplicationFORM
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBox1.SelectedItem == null) return;
-            var b = (Row)comboBox1.SelectedItem;
-            if (b != null)
-                Console.WriteLine(b.MarketCurrencyLong);
+            var coin = (Coin)comboBox1.SelectedItem;
+            if (coin != null)
+            {
+                Console.WriteLine(coin.MarketCurrencyLong);
+                DefineLabels(coin);
+            }
+            foreach (Label lbl in metroPanel1.Controls.OfType<Label>())
+            {
+                //this.Controls.OfType<Label>()
+                lbl.Visible = true;
+            }
+        }
+
+        private void DefineLabels(Coin b)
+        {
             labelMarketCurrency.Text = "MarketCurrency: " + b.MarketCurrency;
             labelBaseCurrency.Text = "BaseCurrency: " + b.BaseCurrency;
             labelMarketCurrencyLong.Text = "MarketCurrencyLong: " + b.MarketCurrencyLong;
@@ -56,31 +95,30 @@ namespace ApplicationFORM
             labelCreated.Text = "Created: " + b.Created.ToString();
             labelNotice.Text = "Notice: " + b.Notice.ToString();
             labelIsSponsored.Text = "IsSponsored: " + b.IsSponsored.ToString();
+            labelPrice.Text = "Price: " + b.Price.ToString();
             pictureBox1.Image = Base64ToImage(b.LogoImage);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            foreach (Label lbl in metroPanel1.Controls.OfType<Label>())
-            {
-                //this.Controls.OfType<Label>()
-                lbl.Visible = true;
-            }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             comboBox1.DataSource = null;
             Database database = new Database();
-            Row item = new Row();
-            Lista = database.GetList();
+            Coin item = new Coin();
+
+            Lista = database.SelectBD();
             comboBox1.DataSource = Lista;
-            
+
             comboBox1.ValueMember = "MarketCurrency";
             comboBox1.DisplayMember = "MarketCurrency";
+            //database.Close();
         }
 
         private void comboBox1_Format(object sender, ListControlConvertEventArgs e)
         {
-            string marketCurrencyLong = ((Row)e.ListItem).MarketCurrencyLong;
-            string baseCurrency = ((Row)e.ListItem).BaseCurrency;
+            string marketCurrencyLong = ((Coin)e.ListItem).MarketCurrencyLong;
+            string baseCurrency = ((Coin)e.ListItem).BaseCurrency;
             e.Value = marketCurrencyLong + " " + baseCurrency;
         }
 

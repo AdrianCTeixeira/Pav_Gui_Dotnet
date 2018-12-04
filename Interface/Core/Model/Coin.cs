@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Model
 {
-    public class Row
+    public class Coin
     {
         public string MarketCurrency { get; set; }
         public string BaseCurrency { get; set; }
@@ -20,5 +20,6 @@ namespace Core.Model
         public string Notice { get; set; }
         public bool? IsSponsored { get; set; }
         public string LogoImage { get; set; }
+        public decimal Price { get; set; }
     }
 }

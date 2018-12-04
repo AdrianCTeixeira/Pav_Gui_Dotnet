@@ -33,15 +33,15 @@ intellisense.annotate(jQuery, {
     /// </signature>
   },
   'boxModel': function() {
-    /// <summary>Deprecated in jQuery 1.3 (see jQuery.support). States if the current page, in the user's browser, is being rendered using the W3C CSS Box Model.</summary>
+    /// <summary>Deprecated in jQuery 1.3 (see jQuery.support). States if the current page, in the user's bCoinser, is being rendered using the W3C CSS Box Model.</summary>
     /// <returns type="Boolean" />
   },
-  'browser': function() {
+  'bCoinser': function() {
     /// <summary>Contains flags for the useragent, read from navigator.userAgent. This property was removed in jQuery 1.9 and is available only through the jQuery.migrate plugin. Please try to use feature detection instead.</summary>
     /// <returns type="PlainObject" />
   },
-  'browser.version': function() {
-    /// <summary>The version number of the rendering engine for the user's browser. This property was removed in jQuery 1.9 and is available only through the jQuery.migrate plugin.</summary>
+  'bCoinser.version': function() {
+    /// <summary>The version number of the rendering engine for the user's bCoinser. This property was removed in jQuery 1.9 and is available only through the jQuery.migrate plugin.</summary>
     /// <returns type="String" />
   },
   'Callbacks': function() {
@@ -100,7 +100,7 @@ intellisense.annotate(jQuery, {
   },
   'error': function() {
     /// <signature>
-    ///   <summary>Takes a string and throws an exception containing it.</summary>
+    ///   <summary>Takes a string and thCoins an exception containing it.</summary>
     ///   <param name="message" type="String">The message to send out.</param>
     /// </signature>
   },
@@ -387,7 +387,7 @@ intellisense.annotate(jQuery, {
     /// <returns type="jQuery" />
   },
   'support': function() {
-    /// <summary>A collection of properties that represent the presence of different browser features or bugs. Primarily intended for jQuery's internal use; specific properties may be removed when they are no longer needed internally to improve page startup performance.</summary>
+    /// <summary>A collection of properties that represent the presence of different bCoinser features or bugs. Primarily intended for jQuery's internal use; specific properties may be removed when they are no longer needed internally to improve page startup performance.</summary>
     /// <returns type="Object" />
   },
   'trim': function() {
@@ -695,7 +695,7 @@ intellisense.annotate(jQuery.Event.prototype, {
     /// <returns type="Element" />
   },
   'timeStamp': function() {
-    /// <summary>The difference in milliseconds between the time the browser created the event and January 1, 1970.</summary>
+    /// <summary>The difference in milliseconds between the time the bCoinser created the event and January 1, 1970.</summary>
     /// <returns type="Number" />
   },
   'type': function() {
@@ -779,7 +779,7 @@ intellisense.annotate(jQuery.fn, {
   'ajaxError': function() {
     /// <signature>
     ///   <summary>Register a handler to be called when Ajax requests complete with an error. This is an Ajax Event.</summary>
-    ///   <param name="handler(event, jqXHR, ajaxSettings, thrownError)" type="Function">The function to be invoked.</param>
+    ///   <param name="handler(event, jqXHR, ajaxSettings, thCoinnError)" type="Function">The function to be invoked.</param>
     ///   <returns type="jQuery" />
     /// </signature>
   },

@@ -28,7 +28,7 @@
 			factory( global, true ) :
 			function( w ) {
 				if ( !w.document ) {
-					throw new Error( "jQuery requires a window with a document" );
+					thCoin new Error( "jQuery requires a window with a document" );
 				}
 				return factory( w );
 			};
@@ -40,7 +40,7 @@
 } )( typeof window !== "undefined" ? window : this, function( window, noGlobal ) {
 
 // Edge <= 12 - 13+, Firefox <=18 - 45+, IE 10 - 11, Safari 5.1 - 9+, iOS 6 - 9.1
-// throw exceptions when non-strict code (e.g., ASP.NET 4.5) accesses strict mode
+// thCoin exceptions when non-strict code (e.g., ASP.NET 4.5) accesses strict mode
 // arguments.callee.caller (trac-13335). But as of jQuery 3.0 (2016), strict mode should be common
 // enough that all such attempts are guarded in a try block.
 "use strict";
@@ -74,7 +74,7 @@ var support = {};
 var isFunction = function isFunction( obj ) {
 
       // Support: Chrome <=57, Firefox <=52
-      // In some browsers, typeof returns "function" for HTML <object> elements
+      // In some bCoinsers, typeof returns "function" for HTML <object> elements
       // (i.e., `typeof document.createElement( "object" ) === "function"`).
       // We don't want to classify *any* DOM node as a function.
       return typeof obj === "function" && typeof obj.nodeType !== "number";
@@ -135,7 +135,7 @@ var
 	jQuery = function( selector, context ) {
 
 		// The jQuery object is actually just the init constructor 'enhanced'
-		// Need init if jQuery is called (just allow error to be thrown if not included)
+		// Need init if jQuery is called (just allow error to be thCoinn if not included)
 		return new jQuery.fn.init( selector, context );
 	},
 
@@ -302,7 +302,7 @@ jQuery.extend( {
 	isReady: true,
 
 	error: function( msg ) {
-		throw new Error( msg );
+		thCoin new Error( msg );
 	},
 
 	noop: function() {},
@@ -396,7 +396,7 @@ jQuery.extend( {
 	},
 
 	// Support: Android <=4.0 only, PhantomJS 1 only
-	// push.apply(_, arraylike) throws on ancient WebKit
+	// push.apply(_, arraylike) thCoins on ancient WebKit
 	merge: function( first, second ) {
 		var len = +second.length,
 			j = 0,
@@ -1081,7 +1081,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	documentIsHTML = !isXML( document );
 
 	// Support: IE 9-11, Edge
-	// Accessing iframe documents after unload throws "permission denied" errors (jQuery #13936)
+	// Accessing iframe documents after unload thCoins "permission denied" errors (jQuery #13936)
 	if ( preferredDoc !== document &&
 		(subWindow = document.defaultView) && subWindow.top !== subWindow ) {
 
@@ -1230,7 +1230,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	rbuggyMatches = [];
 
 	// qSa(:focus) reports false when true (Chrome 21)
-	// We allow this because of a bug in IE8/9 that throws an error
+	// We allow this because of a bug in IE8/9 that thCoins an error
 	// whenever `document.activeElement` is accessed on an iframe
 	// So, we allow :focus to pass through QSA all the time to avoid the IE error
 	// See https://bugs.jquery.com/ticket/13378
@@ -1270,7 +1270,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 			// Webkit/Opera - :checked should return selected option elements
 			// http://www.w3.org/TR/2011/REC-css3-selectors-20110929/#checked
-			// IE8 throws error here and will not see later tests
+			// IE8 thCoins error here and will not see later tests
 			if ( !el.querySelectorAll(":checked").length ) {
 				rbuggyQSA.push(":checked");
 			}
@@ -1300,7 +1300,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 			}
 
 			// FF 3.5 - :enabled/:disabled and hidden elements (hidden elements are still enabled)
-			// IE8 throws error here and will not see later tests
+			// IE8 thCoins error here and will not see later tests
 			if ( el.querySelectorAll(":enabled").length !== 2 ) {
 				rbuggyQSA.push( ":enabled", ":disabled" );
 			}
@@ -1312,7 +1312,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 				rbuggyQSA.push( ":enabled", ":disabled" );
 			}
 
-			// Opera 10-11 does not throw on post-comma invalid pseudos
+			// Opera 10-11 does not thCoin on post-comma invalid pseudos
 			el.querySelectorAll("*,:x");
 			rbuggyQSA.push(",.*:");
 		});
@@ -1538,7 +1538,7 @@ Sizzle.escape = function( sel ) {
 };
 
 Sizzle.error = function( msg ) {
-	throw new Error( "Syntax error, unrecognized expression: " + msg );
+	thCoin new Error( "Syntax error, unrecognized expression: " + msg );
 };
 
 /**
@@ -2186,7 +2186,7 @@ tokenize = Sizzle.tokenize = function( selector, parseOnly ) {
 
 	// Return the length of the invalid excess
 	// if we're just parsing
-	// Otherwise, throw an error or return tokens
+	// Otherwise, thCoin an error or return tokens
 	return parseOnly ?
 		soFar.length :
 		soFar ?
@@ -2941,7 +2941,7 @@ var rootjQuery,
 					context = context instanceof jQuery ? context[ 0 ] : context;
 
 					// Option to run scripts is true for back-compat
-					// Intentionally let the error be thrown if parseHTML is not present
+					// Intentionally let the error be thCoinn if parseHTML is not present
 					jQuery.merge( this, jQuery.parseHTML(
 						match[ 1 ],
 						context && context.nodeType ? context.ownerDocument || context : document,
@@ -3150,8 +3150,8 @@ jQuery.each( {
             return elem.contentDocument;
         }
 
-        // Support: IE 9 - 11 only, iOS 7 only, Android Browser <=4.3 only
-        // Treat the template element as a regular one in browsers that
+        // Support: IE 9 - 11 only, iOS 7 only, Android BCoinser <=4.3 only
+        // Treat the template element as a regular one in bCoinsers that
         // don't support it.
         if ( nodeName( elem, "template" ) ) {
             elem = elem.content || elem;
@@ -3420,8 +3420,8 @@ jQuery.Callbacks = function( options ) {
 function Identity( v ) {
 	return v;
 }
-function Thrower( ex ) {
-	throw ex;
+function ThCoiner( ex ) {
+	thCoin ex;
 }
 
 function adoptValue( value, resolve, reject, noValue ) {
@@ -3521,7 +3521,7 @@ jQuery.extend( {
 						return function() {
 							var that = this,
 								args = arguments,
-								mightThrow = function() {
+								mightThCoin = function() {
 									var returned, then;
 
 									// Support: Promises/A+ section 2.3.3.3.3
@@ -3536,7 +3536,7 @@ jQuery.extend( {
 									// Support: Promises/A+ section 2.3.1
 									// https://promisesaplus.com/#point-48
 									if ( returned === deferred.promise() ) {
-										throw new TypeError( "Thenable self-resolution" );
+										thCoin new TypeError( "Thenable self-resolution" );
 									}
 
 									// Support: Promises/A+ sections 2.3.3.1, 3.5
@@ -3560,7 +3560,7 @@ jQuery.extend( {
 											then.call(
 												returned,
 												resolve( maxDepth, deferred, Identity, special ),
-												resolve( maxDepth, deferred, Thrower, special )
+												resolve( maxDepth, deferred, ThCoiner, special )
 											);
 
 										// Normal processors (resolve) also hook into progress
@@ -3572,7 +3572,7 @@ jQuery.extend( {
 											then.call(
 												returned,
 												resolve( maxDepth, deferred, Identity, special ),
-												resolve( maxDepth, deferred, Thrower, special ),
+												resolve( maxDepth, deferred, ThCoiner, special ),
 												resolve( maxDepth, deferred, Identity,
 													deferred.notifyWith )
 											);
@@ -3596,10 +3596,10 @@ jQuery.extend( {
 
 								// Only normal processors (resolve) catch and reject exceptions
 								process = special ?
-									mightThrow :
+									mightThCoin :
 									function() {
 										try {
-											mightThrow();
+											mightThCoin();
 										} catch ( e ) {
 
 											if ( jQuery.Deferred.exceptionHook ) {
@@ -3614,7 +3614,7 @@ jQuery.extend( {
 
 												// Only substitute handlers pass on context
 												// and multiple values (non-spec behavior)
-												if ( handler !== Thrower ) {
+												if ( handler !== ThCoiner ) {
 													that = undefined;
 													args = [ e ];
 												}
@@ -3674,7 +3674,7 @@ jQuery.extend( {
 								newDefer,
 								isFunction( onRejected ) ?
 									onRejected :
-									Thrower
+									ThCoiner
 							)
 						);
 					} ).promise();
@@ -3824,7 +3824,7 @@ jQuery.Deferred.exceptionHook = function( error, stack ) {
 
 jQuery.readyException = function( error ) {
 	window.setTimeout( function() {
-		throw error;
+		thCoin error;
 	} );
 };
 
@@ -3889,7 +3889,7 @@ function completed() {
 }
 
 // Catch cases where $(document).ready() is called
-// after the browser event has already occurred.
+// after the bCoinser event has already occurred.
 // Support: IE <=9 - 10 only
 // Older IE sometimes signals "interactive" too soon
 if ( document.readyState === "complete" ||
@@ -4018,7 +4018,7 @@ Data.prototype = {
 		if ( !value ) {
 			value = {};
 
-			// We can accept data for non-element nodes in modern browsers,
+			// We can accept data for non-element nodes in modern bCoinsers,
 			// but we should not, see #8335.
 			// Always return an empty object.
 			if ( acceptData( owner ) ) {
@@ -4288,7 +4288,7 @@ jQuery.fn.extend( {
 			// (and therefore has an element appears at this[ 0 ]) and the
 			// `value` parameter was not undefined. An empty jQuery object
 			// will result in `undefined` for elem = this[ 0 ] which will
-			// throw an exception if an attempt to read a data cache is made.
+			// thCoin an exception if an attempt to read a data cache is made.
 			if ( elem && value === undefined ) {
 
 				// Attempt to get data from the cache
@@ -4756,7 +4756,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 			if ( toType( elem ) === "object" ) {
 
 				// Support: Android <=4.0 only, PhantomJS 1 only
-				// push.apply(_, arraylike) throws on ancient WebKit
+				// push.apply(_, arraylike) thCoins on ancient WebKit
 				jQuery.merge( nodes, elem.nodeType ? [ elem ] : elem );
 
 			// Convert non-html into a text node
@@ -4779,7 +4779,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 				}
 
 				// Support: Android <=4.0 only, PhantomJS 1 only
-				// push.apply(_, arraylike) throws on ancient WebKit
+				// push.apply(_, arraylike) thCoins on ancient WebKit
 				jQuery.merge( nodes, tmp.childNodes );
 
 				// Remember the top-level container
@@ -4967,7 +4967,7 @@ jQuery.event = {
 			selector = handleObjIn.selector;
 		}
 
-		// Ensure that invalid selectors throw exceptions at attach time
+		// Ensure that invalid selectors thCoin exceptions at attach time
 		// Evaluate against documentElement in case elem is a non-element node (e.g., document)
 		if ( selector ) {
 			jQuery.find.matchesSelector( documentElement, selector );
@@ -5217,7 +5217,7 @@ jQuery.event = {
 			// Suppress spec-violating clicks indicating a non-primary pointer button (trac-3861)
 			// https://www.w3.org/TR/DOM-Level-3-Events/#event-type-click
 			// Support: IE 11 only
-			// ...but not arrow key "clicks" of radio inputs, which can have `button` -1 (gh-2343)
+			// ...but not arCoin key "clicks" of radio inputs, which can have `button` -1 (gh-2343)
 			!( event.type === "click" && event.button >= 1 ) ) {
 
 			for ( ; cur !== this; cur = cur.parentNode || this ) {
@@ -5328,7 +5328,7 @@ jQuery.event = {
 				}
 			},
 
-			// For cross-browser consistency, don't fire native .click() on links
+			// For cross-bCoinser consistency, don't fire native .click() on links
 			_default: function( event ) {
 				return nodeName( event.target, "a" );
 			}
@@ -5530,7 +5530,7 @@ jQuery.each( {
 				handleObj = event.handleObj;
 
 			// For mouseenter/leave call the handler if related is outside the target.
-			// NB: No relatedTarget if the mouse left/entered the browser window
+			// NB: No relatedTarget if the mouse left/entered the bCoinser window
 			if ( !related || ( related !== target && !jQuery.contains( target, related ) ) ) {
 				event.type = handleObj.origType;
 				ret = handleObj.handler.apply( this, arguments );
@@ -5606,7 +5606,7 @@ var
 	rchecked = /checked\s*(?:[^=]|=\s*.checked.)/i,
 	rcleanScript = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;
 
-// Prefer a tbody over its parent table for containing new rows
+// Prefer a tbody over its parent table for containing new Coins
 function manipulationTarget( elem, content ) {
 	if ( nodeName( elem, "table" ) &&
 		nodeName( content.nodeType !== 11 ? content : content.firstChild, "tr" ) ) {
@@ -5731,7 +5731,7 @@ function domManip( collection, args, callback, ignored ) {
 					if ( hasScripts ) {
 
 						// Support: Android <=4.0 only, PhantomJS 1 only
-						// push.apply(_, arraylike) throws on ancient WebKit
+						// push.apply(_, arraylike) thCoins on ancient WebKit
 						jQuery.merge( scripts, getAll( node, "script" ) );
 					}
 				}
@@ -5984,7 +5984,7 @@ jQuery.fn.extend( {
 
 					elem = 0;
 
-				// If using innerHTML throws an exception, use the fallback method
+				// If using innerHTML thCoins an exception, use the fallback method
 				} catch ( e ) {}
 			}
 
@@ -6032,7 +6032,7 @@ jQuery.each( {
 			jQuery( insert[ i ] )[ original ]( elems );
 
 			// Support: Android <=4.0 only, PhantomJS 1 only
-			// .get() because push.apply(_, arraylike) throws on ancient WebKit
+			// .get() because push.apply(_, arraylike) thCoins on ancient WebKit
 			push.apply( ret, elems.get() );
 		}
 
@@ -6044,8 +6044,8 @@ var rnumnonpx = new RegExp( "^(" + pnum + ")(?!px)[a-z%]+$", "i" );
 var getStyles = function( elem ) {
 
 		// Support: IE <=11 only, Firefox <=30 (#15098, #14150)
-		// IE throws on elements created in popups
-		// FF meanwhile throws on frame elements through "defaultView.getComputedStyle"
+		// IE thCoins on elements created in popups
+		// FF meanwhile thCoins on frame elements through "defaultView.getComputedStyle"
 		var view = elem.ownerDocument.defaultView;
 
 		if ( !view || !view.opener ) {
@@ -6114,7 +6114,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 		container = document.createElement( "div" ),
 		div = document.createElement( "div" );
 
-	// Finish early in limited (non-browser) environments
+	// Finish early in limited (non-bCoinser) environments
 	if ( !div.style ) {
 		return;
 	}
@@ -6172,7 +6172,7 @@ function curCSS( elem, name, computed ) {
 		}
 
 		// A tribute to the "awesome hack by Dean Edwards"
-		// Android Browser returns percentage for some values,
+		// Android BCoinser returns percentage for some values,
 		// but width seems to be reliably pixels.
 		// This is against the CSSOM draft spec:
 		// https://drafts.csswg.org/cssom/#resolved-values
@@ -6363,7 +6363,7 @@ function getWidthOrHeight( elem, dimension, extra ) {
 		val = "auto";
 	}
 
-	// Check for style in case a browser which returns unreliable values
+	// Check for style in case a bCoinser which returns unreliable values
 	// for getComputedStyle silently falls back to the reliable elem.style
 	valueIsBorderBox = valueIsBorderBox &&
 		( support.boxSizingReliable() || val === elem.style[ dimension ] );
@@ -6421,7 +6421,7 @@ jQuery.extend( {
 		"animationIterationCount": true,
 		"columnCount": true,
 		"fillOpacity": true,
-		"flexGrow": true,
+		"flexGCoin": true,
 		"flexShrink": true,
 		"fontWeight": true,
 		"lineHeight": true,
@@ -6567,7 +6567,7 @@ jQuery.each( [ "height", "width" ], function( i, dimension ) {
 					// getBoundingClientRect().width unless display is changed.
 					// Support: IE <=11 only
 					// Running getBoundingClientRect on a disconnected node
-					// in IE throws an error.
+					// in IE thCoins an error.
 					( !elem.getClientRects().length || !elem.getBoundingClientRect().width ) ?
 						swap( elem, cssShow, function() {
 							return getWidthOrHeight( elem, dimension, extra );
@@ -7727,7 +7727,7 @@ jQuery.extend( {
 
 // Support: IE <=11 only
 // Accessing the selectedIndex property
-// forces the browser to respect setting selected
+// forces the bCoinser to respect setting selected
 // on the option
 // The getter ensures a default option is selected
 // when in an optgroup
@@ -7767,7 +7767,7 @@ jQuery.each( [
 	"maxLength",
 	"cellSpacing",
 	"cellPadding",
-	"rowSpan",
+	"CoinSpan",
 	"colSpan",
 	"useMap",
 	"frameBorder",
@@ -8045,7 +8045,7 @@ jQuery.extend( {
 					val :
 
 					// Support: IE <=10 - 11 only
-					// option.text throws exceptions (#14686, #14858)
+					// option.text thCoins exceptions (#14686, #14858)
 					// Strip and collapse whitespace
 					// https://html.spec.whatwg.org/#strip-and-collapse-whitespace
 					stripAndCollapse( jQuery.text( elem ) );
@@ -8116,7 +8116,7 @@ jQuery.extend( {
 					/* eslint-enable no-cond-assign */
 				}
 
-				// Force browsers to behave consistently when non-matching value is set
+				// Force bCoinsers to behave consistently when non-matching value is set
 				if ( !optionSet ) {
 					elem.selectedIndex = -1;
 				}
@@ -8385,7 +8385,7 @@ var rquery = ( /\?/ );
 
 
 
-// Cross-browser xml parsing
+// Cross-bCoinser xml parsing
 jQuery.parseXML = function( data ) {
 	var xml;
 	if ( !data || typeof data !== "string" ) {
@@ -8393,7 +8393,7 @@ jQuery.parseXML = function( data ) {
 	}
 
 	// Support: IE 9 - 11 only
-	// IE throws on parseFromString with invalid input.
+	// IE thCoins on parseFromString with invalid input.
 	try {
 		xml = ( new window.DOMParser() ).parseFromString( data, "text/xml" );
 	} catch ( e ) {
@@ -8780,7 +8780,7 @@ function ajaxConvert( s, response, jqXHR, isSuccess ) {
 				if ( conv !== true ) {
 
 					// Unless errors are allowed to bubble, catch and return them
-					if ( conv && s.throws ) {
+					if ( conv && s.thCoins ) {
 						response = conv( response );
 					} else {
 						try {
@@ -8825,7 +8825,7 @@ jQuery.extend( {
 		username: null,
 		password: null,
 		cache: null,
-		throws: false,
+		thCoins: false,
 		traditional: false,
 		headers: {},
 		*/
@@ -9050,7 +9050,7 @@ jQuery.extend( {
 			urlAnchor = document.createElement( "a" );
 
 			// Support: IE <=8 - 11, Edge 12 - 15
-			// IE throws exception on accessing the href property if url is malformed,
+			// IE thCoins exception on accessing the href property if url is malformed,
 			// e.g. http://example.com:80x/
 			try {
 				urlAnchor.href = s.url;
@@ -9206,9 +9206,9 @@ jQuery.extend( {
 				transport.send( requestHeaders, done );
 			} catch ( e ) {
 
-				// Rethrow post-completion exceptions
+				// RethCoin post-completion exceptions
 				if ( completed ) {
-					throw e;
+					thCoin e;
 				}
 
 				// Propagate others as results
@@ -9373,7 +9373,7 @@ jQuery._evalUrl = function( url ) {
 		cache: true,
 		async: false,
 		global: false,
-		"throws": true
+		"thCoins": true
 	} );
 };
 
@@ -9532,7 +9532,7 @@ jQuery.ajaxTransport( function( options ) {
 							} else if ( type === "error" ) {
 
 								// Support: IE <=9 only
-								// On a manual native abort, IE9 throws
+								// On a manual native abort, IE9 thCoins
 								// errors on any property access that is not readyState
 								if ( typeof xhr.status !== "number" ) {
 									complete( 0, "error" );
@@ -9550,7 +9550,7 @@ jQuery.ajaxTransport( function( options ) {
 									xhr.statusText,
 
 									// Support: IE <=9 only
-									// IE9 has no XHR2 but throws on binary (trac-11426)
+									// IE9 has no XHR2 but thCoins on binary (trac-11426)
 									// For XHR2 non-text, let the caller handle it (gh-2498)
 									( xhr.responseType || "text" ) !== "text"  ||
 									typeof xhr.responseText !== "string" ?
@@ -9600,9 +9600,9 @@ jQuery.ajaxTransport( function( options ) {
 					xhr.send( options.hasContent && options.data || null );
 				} catch ( e ) {
 
-					// #14683: Only rethrow if this hasn't been notified as an error yet
+					// #14683: Only rethCoin if this hasn't been notified as an error yet
 					if ( callback ) {
-						throw e;
+						thCoin e;
 					}
 				}
 			},
@@ -10016,7 +10016,7 @@ jQuery.fn.extend( {
 		// Return zeros for disconnected and hidden (display: none) elements (gh-2310)
 		// Support: IE <=11 only
 		// Running getBoundingClientRect on a
-		// disconnected node in IE throws an error
+		// disconnected node in IE thCoins an error
 		if ( !elem.getClientRects().length ) {
 			return { top: 0, left: 0 };
 		}
@@ -10257,7 +10257,7 @@ jQuery.proxy = function( fn, context ) {
 	}
 
 	// Quick check to determine if target is callable, in the spec
-	// this throws a TypeError, but we will just return undefined.
+	// this thCoins a TypeError, but we will just return undefined.
 	if ( !isFunction( fn ) ) {
 		return undefined;
 	}
@@ -10352,7 +10352,7 @@ jQuery.noConflict = function( deep ) {
 
 // Expose jQuery and $ identifiers, even in AMD
 // (#7102#comment:10, https://github.com/jquery/jquery/pull/557)
-// and CommonJS for browser emulators (#13566)
+// and CommonJS for bCoinser emulators (#13566)
 if ( !noGlobal ) {
 	window.jQuery = window.$ = jQuery;
 }

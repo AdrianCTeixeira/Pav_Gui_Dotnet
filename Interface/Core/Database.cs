@@ -16,53 +16,71 @@ namespace Core
 {
     public class Database
     {
-        public void SalvarLista(List<MapSummary> summarie, List<MapSummaryN> summarieN)
+
+        private SqlConnection _conn = null;
+
+        public SqlConnection Connect()
         {
-            Console.WriteLine("------------" + DateTime.Now.ToString("h:mm:ss tt") + "------------");
-            int i = 0;
+            if (_conn == null || _conn.State == ConnectionState.Closed)
+            {
+                SqlConnection connection = new SqlConnection("Server=localhost;Database=api;User Id=sa; Password =sqlserver");
+                connection.Open();
+                _conn = connection;
+                return _conn;
+
+            }
+            else if (_conn.State == ConnectionState.Open)
+            {
+                return _conn;
+            }
+            return null;
+        }
+
+        public void Close()
+        {
             try
             {
-                var list = summarie;
-                var list2 = summarieN;
+                if (_conn.State == ConnectionState.Open)
+                {
+                    _conn.Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        public List<Thread> SalvarLista(List<MapSummary> summarie, List<MapSummaryN> summarieN)
+        {
+            Console.WriteLine("------------" + DateTime.Now.ToString("h:mm:ss tt") + "------------");
+            List<Thread> threads = new List<Thread>();
+            try
+            {
                 int threadNumbers = 10;
-                int eachThread = summarie.Count / threadNumbers;
 
-                DeleteInfo();
+                for (int index = 1; index <= threadNumbers; index++)
+                {
+                    Thread thread = new Thread(() => SaveDB(summarie, summarieN, index, threadNumbers));
+                    thread.Start();
+                    Thread.Sleep(10);
+                    threads.Add(thread);
+                }
 
-                Thread thread1 = new Thread(() => SaveDB(summarie, i, eachThread * 0, eachThread * 1));
-                Thread thread2 = new Thread(() => SaveDB(summarie, i, eachThread * 1, eachThread * 2));
-                Thread thread3 = new Thread(() => SaveDB(summarie, i, eachThread * 2, eachThread * 3));
-                Thread thread4 = new Thread(() => SaveDB(summarie, i, eachThread * 3, eachThread * 4));
-                Thread thread5 = new Thread(() => SaveDB(summarie, i, eachThread * 4, eachThread * 5));
-                Thread thread6 = new Thread(() => SaveDB(summarie, i, eachThread * 5, eachThread * 6));
-                Thread thread7 = new Thread(() => SaveDB(summarie, i, eachThread * 6, eachThread * 7));
-                Thread thread8 = new Thread(() => SaveDB(summarie, i, eachThread * 7, eachThread * 8));
-                Thread thread9 = new Thread(() => SaveDB(summarie, i, eachThread * 8, eachThread * 9));
-                Thread thread10 = new Thread(() => SaveDB(summarie, i, eachThread * 9, summarie.Count));
-
-                thread1.Start();
-                thread2.Start();
-                thread3.Start();
-                thread4.Start();
-                thread5.Start();
-                thread6.Start();
-                thread7.Start();
-                thread8.Start();
-                thread9.Start();
-                thread10.Start();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
+            return threads;
         }
-        public List<Row> GetList()
+        public List<Coin> SelectBD()
         {
-            List<Row> listObjects = new List<Row>();
+            List<Coin> listObjects = new List<Coin>();
 
-            using (SqlConnection connection = new SqlConnection("Server=DESKTOP-SISBMK5;Database=api;Integrated Security=true"))
+            using (SqlConnection connection = Connect())
             {
-                connection.Open();
+
                 string query = "SELECT [MarketCurrency] ," +
                     "[BaseCurrency] ," +
                     "[MarketCurrencyLong] ," +
@@ -74,7 +92,8 @@ namespace Core
                     "[Created] ," +
                     "[Notice] ," +
                     "[IsSponsored]," +
-                    "CAST('<![CDATA[' + CAST(LogoImage as nvarchar(max)) + ']]>' AS xml) " +
+                    "CAST('<![CDATA[' + CAST(LogoImage as nvarchar(max)) + ']]>' AS xml), " +
+                    "[Price] " +
                     "FROM [api].[dbo].[MapSummary] " +
                     "ORDER BY MarketCurrencyLong ";
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -83,20 +102,7 @@ namespace Core
                     {
                         while (reader.Read())
                         {
-                            Row row = new Row();
-                            row.MarketCurrency = reader.GetString(0).ToString();
-                            row.BaseCurrency = reader.GetString(1).ToString();
-                            row.MarketCurrencyLong = reader.GetString(2).ToString();
-                            row.BaseCurrencyLong = reader.GetString(3).ToString();
-                            row.MinTradeSize = reader.GetDecimal(4);
-                            row.MarketName = reader.GetString(5).ToString();
-                            row.IsActive = reader.GetBoolean(6);
-                            row.IsRestricted = reader.GetBoolean(7);
-                            row.Created = reader.GetDateTime(8);
-                            row.Notice = reader.GetString(9).ToString();
-                            row.IsSponsored = reader.GetBoolean(10);
-                            row.LogoImage = reader.GetString(11).ToString();
-                            listObjects.Add(row);
+                            listObjects.Add(CoinFromDBRow(listObjects, reader));
                         }
                     }
                 }
@@ -104,39 +110,98 @@ namespace Core
             }
 
         }
-        private static void DeleteInfo()
+
+        private Coin CoinFromDBRow(List<Coin> listObjects, SqlDataReader reader)
+        {
+            Coin coinRow = new Coin();
+            coinRow.MarketCurrency = reader.GetString(0).ToString();
+            coinRow.BaseCurrency = reader.GetString(1).ToString();
+            coinRow.MarketCurrencyLong = reader.GetString(2).ToString();
+            coinRow.BaseCurrencyLong = reader.GetString(3).ToString();
+            coinRow.MinTradeSize = reader.GetDecimal(4);
+            coinRow.MarketName = reader.GetString(5).ToString();
+            coinRow.IsActive = reader.GetBoolean(6);
+            coinRow.IsRestricted = reader.GetBoolean(7);
+            coinRow.Created = reader.GetDateTime(8);
+            coinRow.Notice = reader.GetString(9).ToString();
+            coinRow.IsSponsored = reader.GetBoolean(10);
+            coinRow.LogoImage = reader.GetString(11).ToString();
+            coinRow.Price = reader.GetDecimal(12);
+            return coinRow;
+        }
+
+        public void DeleteBD()
         {
             string deleteRegister = "DELETE FROM MapSummary";
-            using (SqlConnection conn = new SqlConnection("Server=DESKTOP-SISBMK5;Database=api;Integrated Security=true"))
+            using (SqlConnection connection = this.Connect())
             {
-                conn.Open();
+
                 using (SqlCommand queryDeleteRegister = new SqlCommand(deleteRegister))
                 {
-                    queryDeleteRegister.Connection = conn;
+                    queryDeleteRegister.Connection = connection;
                     queryDeleteRegister.CommandType = CommandType.Text;
                     queryDeleteRegister.CommandText = deleteRegister;
                     queryDeleteRegister.ExecuteNonQuery();
                 }
-                conn.Close();
+
             }
         }
-        private static int SaveDB(List<MapSummary> summarie, int i, int iniciarEm, int pararEm)
+        private int SaveDB(List<MapSummary> _summarieAll, List<MapSummaryN> summarieN, int index, int threadNumbers)
         {
-            using (SqlConnection conn = new SqlConnection("Server=DESKTOP-SISBMK5;Database=api;Integrated Security=true"))
+            // _summarieAll.Count = 293
+            // index = 10
+            // threadNumbers = 10
+
+            int cadaThreadTem = _summarieAll.Count / threadNumbers; //29,3
+
+            int pararEm = (cadaThreadTem * index) - 1;// 29,3 * 9 = 
+            int iniciarEm = (pararEm - cadaThreadTem) + 1; // 29,3 - 29,3 = 0
+            if (cadaThreadTem * (index + 1) > _summarieAll.Count)
             {
-                conn.Open();
-                List<MapSummary> summarie2 = new List<MapSummary>();
-                for (int x = iniciarEm; x < pararEm; x++)
+                pararEm = _summarieAll.Count;
+            }
+            Console.WriteLine("Iniciar Em: " + iniciarEm + " pararEm: " + (decimal)pararEm);
+
+            try
+            {
+                SqlConnection connection = new SqlConnection("Server=localhost;Database=api;User Id=sa; Password =sqlserver");
+                connection.Open();
+
+                List<Coin> coin = new List<Coin>();
+                List<MapSummary> summarieAll = new List<MapSummary>();
+                int countFinal = pararEm + 1;
+                if (countFinal + 1 > _summarieAll.Count)
                 {
-                    summarie2.Add(summarie[x]);
+                    countFinal = _summarieAll.Count;
                 }
-                foreach (MapSummary objeto in summarie2)
+                for (int x = iniciarEm; x < countFinal; x++)
+                {
+                    summarieAll.Add(_summarieAll[x]);
+                }
+
+                foreach (MapSummary objeto in summarieAll)
+                {
+                    var item = summarieN.FirstOrDefault(o => o.MarketName == summarieAll.First().MarketName);
+                    Coin newCoin = CreateCoin(objeto, item);
+                    if (newCoin.Price == 0)
+                    {
+                        coin.Add(CreateCoin(objeto));
+                        Console.WriteLine("null");
+                    }
+                    else
+                    {
+                        coin.Add(newCoin);
+                    }
+                }
+                Console.WriteLine("--------------------" + coin.Count + "-----------------------");
+
+                foreach (Coin objeto in coin)
                 {
                     byte[] data = null;
-                    using (WebClient webClient = new WebClient())
-                    {
-                        data = webClient.DownloadData(objeto.LogoUrl);
-                    }
+                    WebClient webClient = new WebClient();
+
+                    data = webClient.DownloadData(objeto.LogoImage);
+
                     string saveStaff = "INSERT into MapSummary VALUES ("
                         + "'" + objeto.MarketCurrency + "'" + ","
                         + "'" + objeto.BaseCurrency + "'" + ","
@@ -149,26 +214,71 @@ namespace Core
                         + "'" + objeto.Created + "'" + ","
                         + "'" + objeto.Notice + "'" + ","
                         + "'" + objeto.IsSponsored + "'" + ","
-                        + "'" + Convert.ToBase64String(data) + "'" +
+                        + "'" + Convert.ToBase64String(data) + "'" + ","
+                        + "'" + objeto.Price.ToString().Replace(",", ".") + "'" +
                         ")";
-                    using (SqlCommand querySaveStaff = new SqlCommand(saveStaff))
-                    {
-                        querySaveStaff.Connection = conn;
-                        querySaveStaff.CommandType = CommandType.Text;
-                        querySaveStaff.CommandText = saveStaff;
-                        querySaveStaff.ExecuteNonQuery();
-                    }
+                    SqlCommand querySaveStaff = new SqlCommand(saveStaff);
+
+                    querySaveStaff.Connection = connection;
+                    querySaveStaff.CommandType = CommandType.Text;
+                    querySaveStaff.CommandTimeout = 600;
+                    querySaveStaff.CommandText = saveStaff;
+                    querySaveStaff.ExecuteNonQuery();
+
+
                     int contPositionList = iniciarEm;
-                    Console.WriteLine(contPositionList + "  " + pararEm);
                     contPositionList++;
-                    i++;
+
                 }
+                Console.WriteLine("--------------------*" + coin.Count + "-*----------------------");
+
                 Console.WriteLine("------------" + DateTime.Now.ToString("h:mm:ss tt") + "------------");
-                conn.Close();
-                return i;
+                return 0;
 
             }
+            catch (Exception e)
+            {
+                Console.WriteLine("ERRO SAVEDB" + e.Message);
+                return 0;
+            }
+        }
 
+        private static Coin CreateCoin(MapSummary objeto, MapSummaryN item)
+        {
+            Coin coin = new Coin();
+            coin.MarketCurrency = objeto.MarketCurrency;
+            coin.BaseCurrency = objeto.BaseCurrency;
+            coin.MarketCurrencyLong = objeto.MarketCurrencyLong;
+            coin.BaseCurrencyLong = objeto.BaseCurrencyLong;
+            coin.MinTradeSize = objeto.MinTradeSize;
+            coin.MarketName = objeto.MarketName;
+            coin.Price = item.Last;
+            coin.IsActive = objeto.IsActive;
+            coin.IsRestricted = objeto.IsRestricted;
+            coin.Created = objeto.Created;
+            coin.Notice = objeto.Notice;
+            coin.IsSponsored = objeto.IsSponsored;
+            coin.LogoImage = objeto.LogoUrl;
+            return coin;
+        }
+
+        private static Coin CreateCoin(MapSummary objeto)
+        {
+            Coin coin = new Coin();
+            coin.MarketCurrency = objeto.MarketCurrency;
+            coin.BaseCurrency = objeto.BaseCurrency;
+            coin.MarketCurrencyLong = objeto.MarketCurrencyLong;
+            coin.BaseCurrencyLong = objeto.BaseCurrencyLong;
+            coin.MinTradeSize = objeto.MinTradeSize;
+            coin.MarketName = objeto.MarketName;
+            coin.Price = 0;
+            coin.IsActive = objeto.IsActive;
+            coin.IsRestricted = objeto.IsRestricted;
+            coin.Created = objeto.Created;
+            coin.Notice = objeto.Notice;
+            coin.IsSponsored = objeto.IsSponsored;
+            coin.LogoImage = objeto.LogoUrl;
+            return coin;
         }
     }
 }

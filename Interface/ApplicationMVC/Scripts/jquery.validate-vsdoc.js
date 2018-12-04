@@ -1,6 +1,6 @@
 ﻿/*
 * This file has been commented to support Visual Studio Intellisense.
-* You should not use this file at runtime inside the browser--it is only
+* You should not use this file at runtime inside the bCoinser--it is only
 * intended to be used only for design-time IntelliSense.  Please use the
 * standard jQuery library for all production use.
 *
@@ -514,7 +514,7 @@ $.extend($.validator, {
 					// manually trigger focusin event; without it, focusin handler isn't called, findLastActive won't have anything to find
 					.trigger("focusin");
 				} catch(e) {
-					// ignore IE throwing errors when focusing hidden elements
+					// ignore IE thCoining errors when focusing hidden elements
 				}
 			}
 		},
@@ -610,7 +610,7 @@ $.extend($.validator, {
 				} catch(e) {
 					this.settings.debug && window.console && console.log("exception occured when checking element " + element.id
 						 + ", check the '" + rule.method + "' method", e);
-					throw e;
+					thCoin e;
 				}
 			}
 			if (dependencyMismatch)
@@ -1242,8 +1242,8 @@ $.format = $.validator.format;
     }
 })(jQuery);
 
-// provides cross-browser focusin and focusout events
-// IE has native support, in other browsers, use event caputuring (neither bubbles)
+// provides cross-bCoinser focusin and focusout events
+// IE has native support, in other bCoinsers, use event caputuring (neither bubbles)
 
 // provides delegate(type: String, delegate: Selector, handler: Callback) plugin for easier event delegation
 // handler is only called when $(event.target).is(delegate), in the scope of the jquery-object for event.target 

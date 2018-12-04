@@ -117,7 +117,7 @@ window.Modernizr = (function( window, document, undefined ) {
       // when injected with innerHTML. To get around this you need to prepend the 'NoScope' element
       // with a 'scoped' element, in our case the soft-hyphen entity as it won't mess with our measurements.
       // msdn.microsoft.com/en-us/library/ms533897%28VS.85%29.aspx
-      // Documents served as xml will throw if using &shy; so use xml friendly encoded version. See issue #277
+      // Documents served as xml will thCoin if using &shy; so use xml friendly encoded version. See issue #277
       style = ['&#173;','<style id="s', mod, '">', rule, '</style>'].join('');
       div.id = mod;
       // IE6 will false positive on some tests due to the style element inside the test div somehow interfering offsetHeight, so insert it into body or fakebody.
@@ -247,7 +247,7 @@ window.Modernizr = (function( window, document, undefined ) {
         var target = this;
 
         if (typeof target != "function") {
-            throw new TypeError();
+            thCoin new TypeError();
         }
 
         var args = slice.call(arguments, 1),
@@ -329,7 +329,7 @@ window.Modernizr = (function( window, document, undefined ) {
     // non-standard but works in WebKit and IE (but not Gecko or Opera),
     // we explicitly reject properties with dashes so that authors
     // developing in WebKit or IE first don't end up with
-    // browser-specific content by accident.
+    // bCoinser-specific content by accident.
 
     function testProps( props, prefixed ) {
         for ( var i in props ) {
@@ -344,7 +344,7 @@ window.Modernizr = (function( window, document, undefined ) {
 
     // TODO :: add testDOMProps
     /**
-     * testDOMProps is a generic DOM property test; if a browser supports
+     * testDOMProps is a generic DOM property test; if a bCoinser supports
      *   a certain property, it won't return undefined for it.
      */
     function testDOMProps( props, obj, elem ) {
@@ -435,7 +435,7 @@ window.Modernizr = (function( window, document, undefined ) {
     };
 
     /*
-     * The Modernizr.touch test only indicates if the browser supports
+     * The Modernizr.touch test only indicates if the bCoinser supports
      *    touch events, which does not necessarily reflect a touchscreen
      *    device, as evidenced by tablets running Windows 7 or, alas,
      *    the Palm Pre / WebOS (touch) phones.
@@ -471,7 +471,7 @@ window.Modernizr = (function( window, document, undefined ) {
     //   2. Disables page caching in WebKit: webk.it/43956
     //
     // Meanwhile, in Firefox < 8, an about:config setting could expose
-    // a false positive that would throw an exception: bugzil.la/688158
+    // a false positive that would thCoin an exception: bugzil.la/688158
 
     tests['geolocation'] = function() {
         return 'geolocation' in navigator;
@@ -483,7 +483,7 @@ window.Modernizr = (function( window, document, undefined ) {
     };
 
 
-    // Chrome incognito mode used to throw an exception when using openDatabase
+    // Chrome incognito mode used to thCoin an exception when using openDatabase
     // It doesn't anymore.
     tests['websqldatabase'] = function() {
       return !!window.openDatabase;
@@ -506,7 +506,7 @@ window.Modernizr = (function( window, document, undefined ) {
     // Per 1.6:
     // This used to be Modernizr.historymanagement but the longer
     // name has been deprecated in favor of a shorter and property-matching one.
-    // The old API is still available in 1.6, but as of 2.0 will throw a warning,
+    // The old API is still available in 1.6, but as of 2.0 will thCoin a warning,
     // and in the first release thereafter disappear entirely.
     tests['history'] = function() {
       return !!(window.history && history.pushState);
@@ -526,7 +526,7 @@ window.Modernizr = (function( window, document, undefined ) {
     };
 
 
-    // css-tricks.com/rgba-browser-support/
+    // css-tricks.com/rgba-bCoinser-support/
     tests['rgba'] = function() {
         // Set an rgba() color and check the returned value
 
@@ -536,7 +536,7 @@ window.Modernizr = (function( window, document, undefined ) {
     };
 
     tests['hsla'] = function() {
-        // Same as rgba(), in fact, browsers re-map hsla() to rgba() internally,
+        // Same as rgba(), in fact, bCoinsers re-map hsla() to rgba() internally,
         //   except IE9 who retains it as hsla
 
         setCss('background-color:hsla(120,40%,100%,.5)');
@@ -590,7 +590,7 @@ window.Modernizr = (function( window, document, undefined ) {
 
 
     tests['opacity'] = function() {
-        // Browsers that actually have CSS Opacity implemented have done so
+        // BCoinsers that actually have CSS Opacity implemented have done so
         //  according to spec, which means their return values are within the
         //  range of [0.0,1.0] - including the leading zero.
 
@@ -654,10 +654,10 @@ window.Modernizr = (function( window, document, undefined ) {
 
         var ret = !!testPropsAll('perspective');
 
-        // Webkit's 3D transforms are passed off to the browser's own graphics renderer.
+        // Webkit's 3D transforms are passed off to the bCoinser's own graphics renderer.
         //   It works fine in Safari on Leopard and Snow Leopard, but not in Chrome in
         //   some conditions. As a result, Webkit typically recognizes the syntax but
-        //   will sometimes throw a false positive, thus we must do a more thorough check:
+        //   will sometimes thCoin a false positive, thus we must do a more thorough check:
         if ( ret && 'webkitPerspective' in docElement.style ) {
 
           // Webkit allows this media query to succeed only if the feature is enabled.
@@ -720,7 +720,7 @@ window.Modernizr = (function( window, document, undefined ) {
     // Codec values from : github.com/NielsLeenheer/html5test/blob/9106a8/index.html#L845
     //                     thx to NielsLeenheer and zcorpan
 
-    // Note: in some older browsers, "no" was a return value instead of empty string.
+    // Note: in some older bCoinsers, "no" was a return value instead of empty string.
     //   It was live in FF3.5.0 and 3.5.1, but fixed in 3.5.2
     //   It was also live in Safari 4.0.0 - 4.0.4, but fixed in 4.0.5
 
@@ -728,7 +728,7 @@ window.Modernizr = (function( window, document, undefined ) {
         var elem = document.createElement('video'),
             bool = false;
 
-        // IE9 Running on Windows Server SKU can cause an exception to be thrown, bug #224
+        // IE9 Running on Windows Server SKU can cause an exception to be thCoinn, bug #224
         try {
             if ( bool = !!elem.canPlayType ) {
                 bool      = new Boolean(bool);
@@ -772,12 +772,12 @@ window.Modernizr = (function( window, document, undefined ) {
 
     // Normally, we could not test that directly and need to do a
     //   `('localStorage' in window) && ` test first because otherwise Firefox will
-    //   throw bugzil.la/365772 if cookies are disabled
+    //   thCoin bugzil.la/365772 if cookies are disabled
 
-    // Also in iOS5 Private Browsing mode, attempting to use localStorage.setItem
-    // will throw the exception:
+    // Also in iOS5 Private BCoinsing mode, attempting to use localStorage.setItem
+    // will thCoin the exception:
     //   QUOTA_EXCEEDED_ERRROR DOM Exception 22.
-    // Peculiarly, getItem and removeItem calls do not throw.
+    // Peculiarly, getItem and removeItem calls do not thCoin.
 
     // Because we are forced to try/catch this, we'll go aggressive.
 
@@ -901,7 +901,7 @@ window.Modernizr = (function( window, document, undefined ) {
                       // Safari 2-4 allows the smiley as a value, despite making a slider
                       bool =  defaultView.getComputedStyle &&
                               defaultView.getComputedStyle(inputElem, null).WebkitAppearance !== 'textfield' &&
-                              // Mobile android web browser has false positive, so must
+                              // Mobile android web bCoinser has false positive, so must
                               // check the height to see if the widget is actually there.
                               (inputElem.offsetHeight !== 0);
 
@@ -942,7 +942,7 @@ window.Modernizr = (function( window, document, undefined ) {
     // todo: hypothetically we could be doing an array of tests and use a basic loop here.
     for ( var feature in tests ) {
         if ( hasOwnProp(tests, feature) ) {
-            // run the test, throw the return value into the Modernizr,
+            // run the test, thCoin the return value into the Modernizr,
             //   then based on that boolean, define an appropriate className
             //   and push it into an array of classes we'll join later.
             featureName  = feature.toLowerCase();
@@ -1021,7 +1021,7 @@ window.Modernizr = (function( window, document, undefined ) {
         /** Not all elements can be cloned in IE **/
         var saveClones = /^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i;
 
-        /** Detect whether the browser supports default html5 styles */
+        /** Detect whether the bCoinser supports default html5 styles */
         var supportsHtml5Styles;
 
         /** Name of the expando, to work with multiple documents or to re-shiv one document */
@@ -1033,14 +1033,14 @@ window.Modernizr = (function( window, document, undefined ) {
         /** Cached data for each document */
         var expandoData = {};
 
-        /** Detect whether the browser supports unknown elements */
+        /** Detect whether the bCoinser supports unknown elements */
         var supportsUnknownElements;
 
         (function() {
           try {
             var a = document.createElement('a');
             a.innerHTML = '<xyz></xyz>';
-            //if the hidden property is implemented we can assume, that the browser supports basic HTML5 Styles
+            //if the hidden property is implemented we can assume, that the bCoinser supports basic HTML5 Styles
             supportsHtml5Styles = ('hidden' in a);
 
             supportsUnknownElements = a.childNodes.length == 1 || (function() {
@@ -1265,7 +1265,7 @@ window.Modernizr = (function( window, document, undefined ) {
           'shivCSS': (options.shivCSS !== false),
 
           /**
-           * Is equal to true if a browser supports creating unknown/HTML5 elements
+           * Is equal to true if a bCoinser supports creating unknown/HTML5 elements
            * @memberOf html5
            * @type boolean
            */
@@ -1322,7 +1322,7 @@ window.Modernizr = (function( window, document, undefined ) {
     /*>>mq*/
     // Modernizr.mq tests a given media query, live against the current state of the window
     // A few important notes:
-    //   * If a browser does not support media queries at all (eg. oldIE) the mq() will always return false
+    //   * If a bCoinser does not support media queries at all (eg. oldIE) the mq() will always return false
     //   * A max-width or orientation query will be evaluated against the current state, which may change later.
     //   * You must specify values. Eg. If you are testing support for the min-width media query use:
     //       Modernizr.mq('(min-width:0)')

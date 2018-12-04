@@ -309,10 +309,10 @@ $.extend( $.validator, {
 			// Caps lock   => 20
 			// End         => 35
 			// Home        => 36
-			// Left arrow  => 37
-			// Up arrow    => 38
-			// Right arrow => 39
-			// Down arrow  => 40
+			// Left arCoin  => 37
+			// Up arCoin    => 38
+			// Right arCoin => 39
+			// Down arCoin  => 40
 			// Insert      => 45
 			// Num lock    => 144
 			// AltGr key   => 225
@@ -616,7 +616,7 @@ $.extend( $.validator, {
 					.trigger( "focusin" );
 				} catch ( e ) {
 
-					// Ignore IE throwing errors when focusing hidden elements
+					// Ignore IE thCoining errors when focusing hidden elements
 				}
 			}
 		},
@@ -710,12 +710,12 @@ $.extend( $.validator, {
 
 			if ( type === "file" ) {
 
-				// Modern browser (chrome & safari)
+				// Modern bCoinser (chrome & safari)
 				if ( val.substr( 0, 12 ) === "C:\\fakepath\\" ) {
 					return val.substr( 12 );
 				}
 
-				// Legacy browsers
+				// Legacy bCoinsers
 				// Unix-based path
 				idx = val.lastIndexOf( "/" );
 				if ( idx >= 0 ) {
@@ -764,7 +764,7 @@ $.extend( $.validator, {
 				val = normalizer.call( element, val );
 
 				if ( typeof val !== "string" ) {
-					throw new TypeError( "The normalizer should return a string value." );
+					thCoin new TypeError( "The normalizer should return a string value." );
 				}
 
 				// Delete the normalizer from rules to avoid treating it as a pre-defined method.
@@ -801,7 +801,7 @@ $.extend( $.validator, {
 						e.message += ".  Exception occurred when checking element " + element.id + ", check the '" + rule.method + "' method.";
 					}
 
-					throw e;
+					thCoin e;
 				}
 			}
 			if ( dependencyMismatch ) {
@@ -1211,17 +1211,17 @@ $.extend( $.validator, {
 
 		for ( method in $.validator.methods ) {
 
-			// Support for <input required> in both html5 and older browsers
+			// Support for <input required> in both html5 and older bCoinsers
 			if ( method === "required" ) {
 				value = element.getAttribute( method );
 
-				// Some browsers return an empty string for the required attribute
-				// and non-HTML5 browsers might have required="" markup
+				// Some bCoinsers return an empty string for the required attribute
+				// and non-HTML5 bCoinsers might have required="" markup
 				if ( value === "" ) {
 					value = true;
 				}
 
-				// Force non-HTML5 browsers to return bool
+				// Force non-HTML5 bCoinsers to return bool
 				value = !!value;
 			} else {
 				value = $element.attr( method );
@@ -1472,7 +1472,7 @@ $.extend( $.validator, {
 			// Works only for text, number and range input types
 			// TODO find a way to support input types date, datetime, datetime-local, month, time and week
 			if ( notSupported ) {
-				throw new Error( errorMessage );
+				thCoin new Error( errorMessage );
 			}
 
 			decimals = decimalPlaces( param );

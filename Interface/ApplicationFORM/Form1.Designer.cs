@@ -44,6 +44,7 @@
             this.labelIsActive = new System.Windows.Forms.Label();
             this.labelIsSponsored = new System.Windows.Forms.Label();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.labelPrice = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.metroPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -223,6 +224,7 @@
             // 
             // metroPanel1
             // 
+            this.metroPanel1.Controls.Add(this.labelPrice);
             this.metroPanel1.Controls.Add(this.labelNotice);
             this.metroPanel1.Controls.Add(this.labelIsSponsored);
             this.metroPanel1.Controls.Add(this.comboBox1);
@@ -248,6 +250,17 @@
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
+            // 
+            // labelPrice
+            // 
+            this.labelPrice.AutoSize = true;
+            this.labelPrice.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.labelPrice.Location = new System.Drawing.Point(9, 264);
+            this.labelPrice.Name = "labelPrice";
+            this.labelPrice.Size = new System.Drawing.Size(37, 13);
+            this.labelPrice.TabIndex = 15;
+            this.labelPrice.Text = "Price: ";
+            this.labelPrice.Visible = false;
             // 
             // Form1
             // 
@@ -282,6 +295,7 @@
         private System.Windows.Forms.Label labelIsActive;
         private System.Windows.Forms.Label labelIsSponsored;
         private MetroFramework.Controls.MetroPanel metroPanel1;
+        private System.Windows.Forms.Label labelPrice;
     }
 }
 

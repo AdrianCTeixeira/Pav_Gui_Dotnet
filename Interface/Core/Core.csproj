@@ -47,11 +47,11 @@
   <ItemGroup>
     <Compile Include="Api.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="Model\Coin.cs" />
     <Compile Include="Model\JsonMapSummary.cs" />
     <Compile Include="Model\JsonMapSummaryN.cs" />
     <Compile Include="Model\MapSummary.cs" />
     <Compile Include="Model\MapSummaryN.cs" />
-    <Compile Include="Model\Row.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
